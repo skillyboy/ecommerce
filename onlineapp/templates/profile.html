@@ -1,0 +1,55 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% block title %}
+   Profile
+{% endblock title %}
+
+
+{% block content %}
+      <!-- inner navigation  -->
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active" aria-current="Edit your profile">Edit your profile</li>
+    </ol>
+</nav>
+       <!-- inner navigation done -->
+
+{% comment %} form open {% endcomment %}
+<div class="container-fluid bg-dark text-light mb-5">
+
+     <!-- input info -->  
+  <div class="container-fluid bg-dark mt-5 mb-5">
+    <form style="width:400px;" method="POST" action="{% url 'profile' %}">
+    {% csrf_token %}
+      <div class="form-row">
+        <div class="col-md-4 mb-3">
+          <label for="validationServer01">First name</label>
+          <input type="text" class="form-control" id="validationServer01" name="f_name" value="{{user.first_name}}">
+
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="validationServer02">Last name</label>
+          <input type="text" class="form-control " id="validationServer02" name="l_name" value="{{user.last_name}}">
+
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="validationServerUsername">Username</label>
+          <div class="input-group">
+            <input type="text" class="form-control" name="username" value="{{user.username}}">
+          </div>
+        </div>
+      </div>
+      
+      <div class="form-group">
+          <label for="exampleInputText1">Email:</label required>
+          <input type="text" name="email" class="form-control" id="email" value="{{user.email}}" >
+      </div>
+      <div class="form-group">
+      </div> 
+    <button type="submit" class="btn btn-secondary"> <i class="bi bi-bookmark-check"> </i> Update</button>
+    </form>
+  </div>
+  <!-- input info done-->  
+</div>
+     {% comment %} form closed{% endcomment %}
+{% endblock content %}

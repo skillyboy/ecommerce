@@ -1,0 +1,55 @@
+<!-- {% extends 'base.html' %} -->
+
+{% load static %}
+
+{% load humanize %}
+
+{% load mathfilters %}
+
+{% block title %} WELCOME {% endblock title %}
+
+{% block content %}
+<!-- categories section -->
+<div class="container-fluid bg-warning text-center p-3 ">
+    <!-- BOX1 -->
+    <h1> <span>{{client.username|title}}</span></h1>
+    <i><h2>Payment History</h2></i> 
+
+    <div class="container bg-secondary"> 
+        <div class="container mt-4 mb-3 text-light">  
+            <table class="table bg-warning">
+              <thead class="bg-dark text-light">
+                  <tr>
+                      <th scope="col">Item name</th>
+                      {% comment %} <th scope="col">Reservation code</th> {% endcomment %}
+                      <th scope="col">Payment ID</th>
+                      <th scope="col">Amount</th>
+                  </tr>
+              </thead>  
+              <tbody class="text-light bg-secondary">
+                  {% if pays %}
+                    {% for item in pays %}
+                      <tr>
+                          <th scope="row">{{item.name}}</th>
+                          <td>{{item.pay_code}} </td>
+                          <td>{{item.amount|floatformat:2|intcomma}}</td>        
+                      </tr>
+                    {% endfor %}
+                  {% endif %}
+              </tbody> 
+            </table>        
+        </div>
+        <!-- BOX1 DONE-->
+      </div>
+    <i><h4> Enjoy your stay !</h4></i>
+    <p><a href="{% url 'index' %}"> <button type="submit" class="btn btn-secondary">Home</button></a></p>  
+</div>
+
+
+ <!-- end of child of container  -->
+{% endblock content %}
+
+<!-- Business class ROOMS DONE  --> 
+
+
+

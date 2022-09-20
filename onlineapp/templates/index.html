@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Home
+{% endblock title %}
+
+{% block content %}
+
+<div >
+        <!-- BOX1 -->
+  <div class="container-fluid mt-5 mb-5">
+    <h1 class="bg-danger text-center">Latest Products</h1>
+    <div class="row">
+        {% if featured %}
+          {% for item in featured %}
+            <div class="col-12 col-sm-12 col-md-6 col-lg-3 mt-2 mb-2 w-20" >
+              <div class="card w-100 text-center text-dark">
+                <a href="{% url 'details' item.id %}"><img height=200 src="{{item.image.url}}" class="card-img-top w-50" ></a>
+                <div class="card-body mt3">
+                  <a href="{% url 'details' item.id %}"><h5 class="card-title">{{item.name}}</h5></a>
+                  <p class="card-text text-warning ">${{item.price}}</p>
+                </div>
+              </div>
+            </div> 
+          {% endfor %}
+        {% endif %}
+    </div>
+  </div> 
+  <!-- BOX1 DONE-->
+
+        <!--BOX2-->
+  <div class="container-fluid mt-5 mb-5">
+    <h1 class="bg-danger text-center">Available Products</h1>
+      <div class="row">
+          {% if latest %}
+            {% for item in latest %}
+              <div class="col-12 col-sm-12 col-md-6 col-lg-3 mt-2 mb-2 w-20" >
+                <div class="card w-100 text-center text-dark">
+                  <a href="{% url 'details' item.id %}"><img src="{{item.image.url}}" class="card-img-top w-50" ></a>
+                  <div class="card-body mt3">
+                    <a href="{% url 'details' item.id %}"><h5 class="card-title">{{item.name}}</h5></a>
+                    <p class="card-text text-warning ">${{item.price}}</p>
+                  </div>
+                </div>
+              </div> 
+            {% endfor %}
+          {% endif %}
+      </div>
+  </div> 
+<!-- BOX2 DONE-->
+</div> 
+{% endblock content %}
