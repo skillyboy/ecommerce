@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+Products
+{% endblock title %}
+
+
+{% block content %}
+<!-- products section -->
+<div class="container-fluid mt-5 mb-5">
+
+    <!-- BOX1 -->
+    <h1 class="container bg-danger text-center">All Products</h1>
+    <div class="row">
+        {% if products %}
+            {% for item  in products %}
+                <div class="col-12 col-sm-6 col-md-6 col-lg-4 mt-2 mb-2 w-25" >
+                    <div class="card w-100 text-center text-dark">
+                      <a href="{% url 'details' item.id %}"><img height=300 src="{{item.image.url}}" class="card-img-top w-50" ></a>
+                        <div class="card-body mt3">
+                            <a href="{% url 'details' item.id %}">
+                            <h5 class="card-title">{{item.name}}</h5></a>
+                            <h5 class="card-title"> Category : {{item.category}}</h5>
+                            <p class="card-title">${{item.price|floatformat:2}}</p>
+                        </div>
+                    </div>
+                </div> 
+            {% endfor %}
+        {% endif %}
+    </div>
+    <!-- BOX1 DONE-->
+    
+</div>
+
+{% endblock content%}
+
+
